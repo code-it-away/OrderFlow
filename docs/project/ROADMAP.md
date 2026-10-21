@@ -1,6 +1,6 @@
 # Roadmap
 
-OrderFlow is the primary integrated project, with recurring practice outside the application. Each feature follows a learning cycle: identify concepts; explain theory and trade-offs; implement incrementally; add meaningful tests; explore a failure when useful; finish with a short code-reading, debugging, or interview exercise; record what was learned and what needs revision.
+OrderFlow is the primary integrated project, with recurring practice outside the application. Each feature follows a learning cycle: identify concepts; explain theory and trade-offs; provide a small scaffold; have the learner implement the core logic and meaningful tests; review and debug with hints; explore a failure when useful; finish with a short code-reading, debugging, or interview exercise; record what was learned and what needs revision. Provide complete implementations only when requested or when a small snippet is needed to teach a concept.
 
 ## Integrated application path
 

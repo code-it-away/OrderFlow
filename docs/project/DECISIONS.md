@@ -29,3 +29,21 @@
 **Decision:** Use OrderFlow to learn concepts in realistic context while maintaining recurring standalone DSA and interview-design practice. Teach theory before feature implementation, test meaningful behavior, add failure scenarios and a learner exercise where useful, and record learning plus revision needs. Use isolated concurrency experiments for topics that would be artificial in application code.
 
 **Why:** Product engineering requires integration practice, while interview fluency and foundational concurrency concepts also benefit from focused exercises. Keeping both tracks avoids either unrelated-course drift or forcing every topic into production code.
+
+## 2026-10-21 — Initial order lifecycle graph
+
+**Decision:** Start with `CREATED -> CONFIRMED -> SHIPPED -> DELIVERED`; cancellation is allowed from `CREATED` and `CONFIRMED`. `DELIVERED` and `CANCELLED` are terminal. `CONFIRMED` means accepted for fulfillment; payment behavior is outside this first feature.
+
+**Why:** This small graph makes the lifecycle invariant explicit and testable before persistence or API behavior exists. Revisit the statuses when the business flow is refined.
+
+## 2026-10-21 — Immutable first lifecycle model
+
+**Decision:** `Order.transitionTo` returns a new `Order` preserving its UUID and throws a domain exception for an invalid edge.
+
+**Why:** Immutability makes it impossible for a failed transition attempt to partially mutate the current order. A later persistence-backed aggregate may use a mutable entity, while retaining the same transition invariant.
+
+## 2026-10-21 — Grow the package structure with the features
+
+**Decision:** Keep `OrderFlowApplication` as the Spring Boot entry point and organize production code by feature (`order`, then `inventory`, `payment`, and others as they are introduced). Mirror those packages under tests. Add internal layers such as `api`, `application`, and `infrastructure` only when a feature needs those boundaries; keep genuinely shared code small.
+
+**Why:** Feature-oriented packages make domain ownership easier to see in a modular monolith without creating empty folders or speculative architecture. The bootstrap class remains the application launcher, not a container for business logic.

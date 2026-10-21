@@ -1,19 +1,22 @@
 # Current state
 
-**Last updated:** 2026-10-20
+**Last updated:** 2026-10-21
 
 ## Implemented
 
 - Maven project descriptor targeting Java 21 and Spring Boot 3.5.16.
 - Application bootstrap class and basic application configuration.
 - One `@SpringBootTest` application-context smoke test.
-- Maven Wrapper pinned to Maven 3.10.0 (`mvnw`, `mvnw.cmd`, `.mvn/wrapper/`).
+- Order lifecycle model in `com.orderflow.order`: immutable `Order`, explicit `OrderStatus` transitions, and an invalid-transition exception.
+- Lifecycle tests for allowed/rejected transitions and immutable state behavior.
+- Maven Wrapper pinned to Maven 3.10.0 (`mvnw`, `mvnw.cmd`, `.mvn/wrapper/`); wrapper metadata was regenerated in this project copy.
 - Project documentation and Git ignore rules.
 
 ## Verification
 
-- **Verified:** `mvn test` passed with JDK 21: 1 test, 0 failures, 0 errors.
-- **Verified:** `./mvnw test` passed with JDK 21: 1 test, 0 failures, 0 errors.
+- **Verified previously:** The foundation smoke test passed before this feature was added (1 test, 0 failures, 0 errors).
+- **Verified:** `./mvnw -Dtest=OrderLifecycleTest test` passed with JDK 21: 14 tests, 0 failures, 0 errors.
+- **Not fully verified:** Full suite has 14 lifecycle tests passing and the pre-existing Spring context smoke test errored because Mockito's Byte Buddy agent could not self-attach in the managed environment. The context itself started. See `TESTS_AND_FAILURES.md`.
 - Java 21 is installed, but the shell's default `java` still selects Java 27; set `JAVA_HOME` to the Homebrew JDK 21 path when building.
 - Docker is not installed; it is not needed for the current foundation.
 
@@ -23,11 +26,11 @@
 - Maven: 3.10.0
 - Git: 2.56.0
 - Docker: unavailable
-- Git repository: initialized locally; no commits
+- Git repository: `feature/order-lifecycle` tracks `origin/feature/order-lifecycle`; local main and master refs are also present. The user reports that main is the hosted default; the local `origin/HEAD` symbolic ref still points to master.
 
 ## Exact next task
 
-Review the foundation and this learning strategy. After approval, teach and implement the order lifecycle as a pure domain model with tests for valid and invalid status transitions, then finish with a code-reading or interview exercise. No persistence or API yet.
+Complete the learner exercise for the order lifecycle: explain how transition validation and immutability prevent invalid state changes, and review whether the proposed statuses match the intended business flow. Then record learning and revisions. Persistence and API are still out of scope for this task.
 
 ## Learning strategy
 

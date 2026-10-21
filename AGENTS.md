@@ -11,13 +11,14 @@ OrderFlow is the primary integrated learning project: a production-minded order 
 ## Working agreement
 
 1. Inspect the current state before changing it; preserve existing work.
-2. For each feature, name the concepts to learn and teach the relevant theory, problem, terminology, trade-offs, and plan before implementation.
-3. Implement in small increments and add meaningful automated tests; run them when the environment allows.
-4. Introduce controlled failure scenarios where useful, then give the user a short code-reading, debugging, or interview exercise.
-5. Record what the user learned and what needs revision in the session log or task notes.
-6. Never claim a build or test passed without command output proving it.
-7. Record meaningful work in `docs/project/`, especially actual state, decisions, tasks, and failures.
-8. Do not commit, install dependencies, alter machine-wide configuration, or expose secrets without explicit user approval.
+2. For each feature, name the concepts to learn and teach the relevant theory, problem, terminology, trade-offs, and plan before coding.
+3. Use a scaffold-first teaching style by default: provide file structure, types, method signatures, contracts, and TODO markers; leave substantive domain logic and meaningful test assertions for the user to write.
+4. Review the user's implementation, explain defects, and offer hints or debugging questions before showing a complete solution. Provide a full implementation only when the user asks for one or when a small illustrative snippet is needed to teach a concept.
+5. Introduce controlled failure scenarios where useful, then give the user a short code-reading, debugging, or interview exercise.
+6. Record what the user learned and what needs revision in the session log or task notes.
+7. Never claim a build or test passed without command output proving it.
+8. Record meaningful work in `docs/project/`, especially actual state, decisions, tasks, and failures.
+9. Do not commit, install dependencies, alter machine-wide configuration, or expose secrets without explicit user approval.
 
 ## Learning tracks
 
